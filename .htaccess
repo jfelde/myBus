@@ -1,0 +1,5 @@
+Options +ExecCGI
+AddHandler fcgid-script .fcgi
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !=/home2/johnfel1/public_html/myBus/myBus.fcgi
+RewriteRule ^(.*)$ myBus.fcgi/$1 [QSA,L]

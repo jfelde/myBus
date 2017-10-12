@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="MLS Schedule">
+    <meta name="author" content="John Felde">
+    <link rel="icon" href="{{ url_for('static', filename='pics/mlsXcite_logo_gray.png') }}">
+
+    <title>MLS Xcite</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">MLS Xcite</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index">Home</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="contact">Contact</a></li>
+            <li><a href="slides">Slides</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="starter-template">
+        <h1><br>Ranking just for kicks!</h1>
+        <!-- <p class="lead">See all upcoming games or select your<br>favorite team to see their upcoming games.</p> -->
+        <!-- <p> -->
+        <!-- <select name="Select Team"> -->
+            <!-- <option value="NULL">Select Team</option> -->
+            <!-- <option value="ATL">Atlanta United FC</option> -->
+            <!-- <option value="CHI">Chicago Fire</option> -->
+            <!-- <option value="CLB">Columbus Crew SC</option> -->
+            <!-- <option value="COL">Colorado Rapids</option> -->
+            <!-- <option value="DAL">FC Dallas</option> -->
+            <!-- <option value="DC">DC United</option> -->
+            <!-- <option value="HOU">Houston Dynamo</option> -->
+            <!-- <option value="KC">Sporting Kansas City</option> -->
+            <!-- <option value="LA">LA Galaxy</option> -->
+            <!-- <option value="MIN">Minnesota United FC</option> -->
+            <!-- <option value="MTL">Montreal Impact</option> -->
+            <!-- <option value="NE">New England Revolution</option> -->
+            <!-- <option value="NY">New York Red Bulls</option> -->
+            <!-- <option value="NYC">New York City FC</option> -->
+            <!-- <option value="ORL">Orlando City SC</option> -->
+            <!-- <option value="PHI">Philadelphia Union</option> -->
+            <!-- <option value="POR">Portland Timbers</option> -->
+            <!-- <option value="RSL">Real Salt Lake</option> -->
+            <!-- <option value="SEA">Seattle Sounders FC</option> -->
+            <!-- <option value="SJ">San Jose Earthquakes</option> -->
+            <!-- <option value="TOR">Toronto FC</option> -->
+            <!-- <option value="VAN">Vancouver Whitecaps FC</option> -->
+        <!-- </select> -->
+        <!-- </p> -->
+      </div>
+    </div><!-- /.container -->
+
+    <h1>&nbsp;Upcoming Games</h1>
+    <table class="table table-hover"> 
+    <tr><th style="text-align:right">Date</th><th style="text-align:right">Home</th><th></th><th style="text-align:left">Away</th><th style="text-align:left">Link</th><th>Excitement</th><th style="text-align:left">Tickets</th></tr> 
+    {% for game in games %} 
+    <tr><td align="right">{{ game[0] }}</td><td align="right">{{ game[1]}}</td><td align="center">vs</td><td align="left"> {{ game[2] }}</td><td style="text-decoration:none"> <a href={{ game[3] }}>MatchCenter</a></td><td>{{ game[4] }}</td><td><a href={{ game[5][0] }}><img src="{{ url_for('static', filename='pics/ticketmaster.png') }}" height='25'></a> &nbsp; <a href={{ game[5][1] }}><img src="{{ url_for('static', filename='pics/stubhub.png') }}" height='25'></a></td></tr>
+    {% endfor %} 
+    </table> 
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script> 
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
+
