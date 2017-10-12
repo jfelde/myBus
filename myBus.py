@@ -9,6 +9,8 @@ import requests
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, Markup
 
+testing = False
+
 app = Flask(__name__, static_folder=os.path.join(os.getcwd(),'static'))
 
 @app.route('/')
@@ -25,18 +27,14 @@ def index():
     lines = ['5', '5E', 'E Line']
     data = []
     for stop in stops:
-        print stop
-        line = ''
-        for i in range(len(stop)):
-            line += '-'
-        print line
         r = requests.get(base_url+stop_dict[stop])
-        soup = BeautifulSoup(r.text, 'lxml')
+        soup = BeautifulSoup(r.text, 'html.parser')
         table = soup.find('table', attrs={'class':'arrivalsTable'})
         rows = table.findAll('tr', attrs={'class':'arrivalsRow'})
+        first_row = True
         for row in rows:
-            route = row.find('td', attrs={'class':'arrivalsRouteEntry'})
-            route = route.get_text()
+            line = row.find('td', attrs={'class':'arrivalsRouteEntry'})
+            line = line.get_text()
             desc = row.find('td', attrs={'class':'arrivalsDescriptionEntry'})
             dest = desc.find('div', attrs={'class':'arrivalsDestinationEntry'})
             dest = dest.get_text()
@@ -48,8 +46,19 @@ def index():
             time = time.replace('departure', '')
             mins = row.find('td', attrs={'class':'arrivalsStatusEntry'})
             mins = mins.get_text()
-            data.append([stop, route, dest, mins, time])
-    return render_template('myBus.html', data=data)
+            if line in lines:
+                if first_row:
+                    data.append([stop, line, dest, mins, time])
+                    first_row = False
+                else:
+                    data.append(['', line, dest, mins, time])
+    if testing:
+        return data
+    else:
+        return render_template('myBus.html', data=data)
 
 if __name__ == '__main__':
-    app.run()
+    if testing:
+        print index()
+    else:
+        app.run()

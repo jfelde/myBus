@@ -21,50 +21,28 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand">MLS Xcite</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="index">Home</a></li>
-            <li><a href="about">About</a></li>
-            <li><a href="contact">Contact</a></li>
-            <li><a href="slides">Slides</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
     <h1>myBus</h1>
-    <table class="table table-hover"> 
+    <table class="table table-hover">
         <tr>
             <th style="text-align:left">Stop</th>
             <th style="text-align:left">Line</th>
             <th style="text-align:left">Route</th>
             <th style="text-align:left">Next In</th>
             <th style="text-align:left">Time</th>
-        </tr> 
-        {% for row in data %} 
+        </tr>
+        {% for row in data %}
         <tr>
-            <td align="left"> {{ game[0] }} </td>
-            <td align="left"> {{ game[1] }} </td>
-            <td align="left"> {{ game[2] }} </td>
-            <td align="left"> {{ game[3] }} </td>
-            <td align="left"> {{ game[4] }} </td>
+            <td align="left"> {{ row[0] }} </td>
+            <td align="left"> {{ row[1] }} </td>
+            <td align="left"> {{ row[2] }} </td>
+            <td align="left"> {{ row[3] }} </td>
+            <td align="left"> {{ row[4] }} </td>
         </tr>
         {% endfor %}
     </table>
 
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> 
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script> 
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
