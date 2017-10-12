@@ -49,7 +49,7 @@ def index():
             mins = row.find('td', attrs={'class':'arrivalsStatusEntry'})
             mins = mins.get_text()
             data.append([stop, route, dest, mins, time])
-        return render_template('myBus.html', data=data)
+    return render_template('myBus.html', data=data)
 
 if __name__ == '__main__':
     app.run()
