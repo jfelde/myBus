@@ -6,6 +6,7 @@ Scrape bus statuses
 
 import os
 import requests
+from datetime import datetime
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, Markup
 
@@ -21,6 +22,8 @@ def index():
     """
     base_url = 'http://pugetsound.onebusaway.org/where/standard/stop.action?id=1_'
     stops = ['Greenwood', 'Aurora Ave', '3rd & Virginia']
+    if datetime.now().hour > 12:
+        stops.reverse()
     stop_dict = {'Greenwood':str(5790),
                  'Aurora Ave':str(7160),
                  '3rd & Virginia':str(600)}
@@ -36,11 +39,6 @@ def index():
             line = row.find('td', attrs={'class':'arrivalsRouteEntry'})
             line = line.get_text()
             desc = row.find('td', attrs={'class':'arrivalsDescriptionEntry'})
-            dest = desc.find('div', attrs={'class':'arrivalsDestinationEntry'})
-            dest = dest.get_text()
-            dest = dest.replace('Seattle', '')
-            dest = dest.replace('Greenwood', '- Greenwood')
-            dest = dest.replace(' Transit Center', '')
             time = desc.find('div', attrs={'class':'arrivalsTimePanel'})
             time = time.get_text()
             time = time.replace('departure', '')
@@ -48,10 +46,10 @@ def index():
             mins = mins.get_text()
             if line in lines:
                 if first_row:
-                    data.append([stop, line, dest, mins, time])
+                    data.append([stop, line, mins, time])
                     first_row = False
                 else:
-                    data.append(['', line, dest, mins, time])
+                    data.append(['', line, mins, time])
     if testing:
         return data
     else:

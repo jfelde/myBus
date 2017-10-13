@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="myBus">
-    <meta name="author" content="John Felde">
-    <link rel="icon" href="{{ url_for('static', filename='pics/bus.png') }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="myBus">
+        <meta name="author" content="John Felde">
+        <meta http-equiv="refresh" content="60">
+        <link rel="icon" href="{{ url_for('static', filename='pics/bus.png') }}">
+        <title>myBus</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="myBus.css" rel="stylesheet">
+    </head>
 
-    <title>myBus</title>
+    <body>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="myBus.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-
-    <h1>myBus</h1>
+    <h1>
+        <img src="{{ url_for('static', filename='pics/king_bus.jpg') }}"
+             height="42">
+        myBus
+        <img src="{{ url_for('static', filename='pics/king_bus.jpg') }}"
+             height="42">
+    </h1>
     <table class="table table-hover">
         <tr>
             <th style="text-align:left">Stop</th>
             <th style="text-align:left">Line</th>
-            <th style="text-align:left">Route</th>
             <th style="text-align:left">Next In</th>
             <th style="text-align:left">Time</th>
         </tr>
@@ -36,7 +38,6 @@
             <td align="left"> {{ row[1] }} </td>
             <td align="left"> {{ row[2] }} </td>
             <td align="left"> {{ row[3] }} </td>
-            <td align="left"> {{ row[4] }} </td>
         </tr>
         {% endfor %}
     </table>
@@ -48,5 +49,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-  </body>
+
+    </body>
 </html>
