@@ -44,7 +44,7 @@ def index():
             time = time.replace('departure', '')
             mins = row.find('td', attrs={'class':'arrivalsStatusEntry'})
             mins = mins.get_text()
-            if line in lines:
+            if line in lines and int(mins) <= 15:
                 if first_row:
                     data.append([stop, line, mins, time])
                     first_row = False
