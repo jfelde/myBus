@@ -10,7 +10,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, Markup
 
-testing = True
+testing = False
 
 app = Flask(__name__, static_folder=os.path.join(os.getcwd(),'static'))
 
@@ -28,7 +28,7 @@ def index():
                  'Aurora Ave':str(7160),
                  '3rd & Virginia':str(600)}
     lines = ['5', '5E', 'E Line']
-    curtime = datetime.now().strftime('%M-%S')
+    curtime = datetime.now().strftime('%I-%M')
     data = []
     for stop in stops:
         r = requests.get(base_url+stop_dict[stop])
