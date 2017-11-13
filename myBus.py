@@ -28,7 +28,7 @@ def index():
                  'Aurora Ave':str(7160),
                  '3rd & Virginia':str(600)}
     lines = ['5', '5E', 'E Line']
-    time = datetime.now().strftime('%H-%M-%S')
+    curtime = datetime.now().strftime('%M-%S')
     data = []
     for stop in stops:
         r = requests.get(base_url+stop_dict[stop])
@@ -52,9 +52,9 @@ def index():
                 else:
                     data.append(['', line, mins, time])
     if testing:
-        return [time, data]
+        return [curtime, data]
     else:
-        return render_template('myBus.html', time=time, data=data)
+        return render_template('myBus.html', curtime=curtime, data=data)
 
 if __name__ == '__main__':
     if testing:
